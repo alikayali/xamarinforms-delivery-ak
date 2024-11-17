@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -26,6 +27,17 @@ namespace XFDelivery.ViewModels
         public ObservableCollection<Group> Groups { get; set; }
         public ObservableCollection<Item> Items { get; set; }
 
+        private ObservableCollection<Item> _filteredItems;
+        public ObservableCollection<Item> FilteredItems
+        {
+            get => _filteredItems;
+            set
+            {
+                _filteredItems = value;
+                OnPropertyChanged();
+            }
+        }
+
         void GetGroups()
         {
             Groups = new ObservableCollection<Group>(DataService.GetGroups());
@@ -34,6 +46,7 @@ namespace XFDelivery.ViewModels
         void GetItems()
         {
             Items = new ObservableCollection<Item>(DataService.GetItems());
+            FilteredItems = new ObservableCollection<Item>(Items);  // Initial filtering on all items
         }
 
         private async Task ExecuteNavigateToDetailPageCommand(Item model)
@@ -53,6 +66,10 @@ namespace XFDelivery.ViewModels
 
                 Groups[index].selected = true;
                 Groups[index].backgroundColor = Color.FromHex("#FF8920");
+
+                // Filter items based on group
+                FilterItemsByGroup(model.description);
+
             }
         }
 
@@ -63,6 +80,21 @@ namespace XFDelivery.ViewModels
                 item.selected = false;
                 item.backgroundColor = Color.FromHex("#FFFFFF");
             });
+        }
+
+        void FilterItemsByGroup(string groupDescription)
+        {
+            if (groupDescription == "All")
+            {
+                FilteredItems = new ObservableCollection<Item>(Items); // Show all items when "All" is selected (mock data are incorrect)  
+            }
+            else
+            {
+                FilteredItems = new ObservableCollection<Item>(
+                    Items.Where(i => i.Group.ToLower() == groupDescription.ToLower())
+                );
+            }
+            
         }
     }
 }

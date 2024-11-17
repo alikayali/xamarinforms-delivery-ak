@@ -53,7 +53,8 @@ namespace XFDelivery.Service
                      calories = 76,
                      price = 45,
                      rating = 4.2,
-                     favorite = true
+                     favorite = true,
+                     Group = "Pizza"  // Assigned to Pizza group
                 },
                 new Item()
                 {
@@ -63,7 +64,8 @@ namespace XFDelivery.Service
                      image = "item2",
                      price = 59,
                      rating = 3.8,
-                     favorite = false
+                     favorite = false,
+                     Group = "Pizza"  // Assigned to Pizza group
                 },
                 new Item()
                 {
@@ -73,8 +75,33 @@ namespace XFDelivery.Service
                      calories = 85,
                      rating = 4.9,
                      price = 106,
-                     favorite = true
+                     favorite = true,
+                     Group = "Pizza"  // Assigned to Pizza group
                 },
+                new Item()
+                {
+                     description = "AK Burgers",
+                     complement = "BURGER complement",
+                     image = "item3",
+                     calories = 85,
+                     rating = 5,
+                     price = 00,
+                     favorite = true,
+                     Group = "Burgers"  // Assigned to BURGER group
+                },
+                new Item()
+                {
+                     description = "AK Asian",
+                     complement = "Asian complement",
+                     image = "item3",
+                     calories = 85,
+                     rating = 5,
+                     price = 00,
+                     favorite = true,
+                     Group = "Asian"  // Assigned to Asian group
+                },
+
+
             };
         }
     }

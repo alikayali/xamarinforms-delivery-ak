@@ -9,5 +9,6 @@
         public bool favorite { get; set; }
         public string image { get; set; }
         public double rating { get; set; }
+        public string Group { get; set; }  // Group property
     }
 }

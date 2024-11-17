@@ -129,7 +129,7 @@
                         Grid.ColumnSpan="3"
                         Margin="20,30,0,0"
                         HorizontalScrollBarVisibility="Never"
-                        ItemsSource="{Binding Items}"
+                        ItemsSource="{Binding FilteredItems}"
                         SelectionMode="Single">
                         <CollectionView.ItemsLayout>
                             <LinearItemsLayout ItemSpacing="20" Orientation="Horizontal" />
